@@ -2,11 +2,15 @@
   "name": "lyricnator-js",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "src/lyricnator.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "node-genius": "^1.1.0",
+    "open": "^7.3.0"
+  }
 }
