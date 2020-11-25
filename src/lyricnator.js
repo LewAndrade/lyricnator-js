@@ -15,8 +15,7 @@ const getSongTitle = () => {
         }
     )
     resultList.forEach((item, index) => {
-        let splitItem = item.split(": ")
-        resultObj[index] = splitItem[1]
+        resultObj[index] = item.split(": ")[1]
     })
 
     return resultObj[0]
@@ -25,7 +24,7 @@ const getSongTitle = () => {
 let songTitle = getSongTitle()
 
 if (!(songTitle === "Spotify Premium"))
-    Client.search(getSongTitle(), (error, results) => {
+    Client.search(songTitle, (error, results) => {
         if (error)
             console.error("Yikes, something went wrong: ", error)
         else {
