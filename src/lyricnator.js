@@ -1,5 +1,6 @@
 const open = require('open')
 const Genius = require('node-genius')
+const notifier = require('node-notifier')
 const {execSync} = require("child_process");
 
 const Client = new Genius(process.env.GENIUS_ACCESS_TOKEN)
@@ -26,11 +27,17 @@ let songTitle = getSongTitle()
 if (!(songTitle === "Spotify Premium"))
     Client.search(songTitle, (error, results) => {
         if (error)
-            console.error("Yikes, something went wrong: ", error)
+            notifier.notify({
+                title: "Lyricnator",
+                message: `Yikes, something went wrong: ${error}`
+            })
         else {
             let {response: {hits: [{result: {url}}]}} = JSON.parse(results)
             open(url)
         }
     })
 else
-    console.error("No song playing currently... start one and then run the program again.")
+    notifier.notify({
+        title: "Lyricnator",
+        message: "No song playing currently... start one and then run the program again."
+    })
